@@ -1,0 +1,387 @@
+
+SQL*Plus: Release 11.2.0.2.0 Production on Mon Aug 25 20:44:03 2025
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+SQL> connect
+Enter user-name: system
+Enter password:
+Connected.
+SQL> desc Employee1;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EID                                                NUMBER(5)
+ ENAME                                              VARCHAR2(10)
+ EJOB                                               VARCHAR2(10)
+ ESAL                                               NUMBER(38)
+
+SQL> create table department(did number(10) , dname varchar2(10),department varchar2(10),dadd varchar2(10),dno number(10));
+
+Table created.
+
+SQL> desc  department;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DID                                                NUMBER(10)
+ DNAME                                              VARCHAR2(10)
+ DEPARTMENT                                         VARCHAR2(10)
+ DADD                                               VARCHAR2(10)
+ DNO                                                NUMBER(10)
+
+SQL> insert into department values(&did,&dname,&department,&dadd,&dno);
+Enter value for did: 1
+Enter value for dname: 'radha'
+Enter value for department: 'hr'
+Enter value for dadd: 'hyd'
+Enter value for dno: 102
+old   1: insert into department values(&did,&dname,&department,&dadd,&dno)
+new   1: insert into department values(1,'radha','hr','hyd',102)
+
+1 row created.
+
+SQL> /
+Enter value for did: 2
+Enter value for dname: 'seetha'
+Enter value for department: 'sales'
+Enter value for dadd: 'atp'
+Enter value for dno: 103
+old   1: insert into department values(&did,&dname,&department,&dadd,&dno)
+new   1: insert into department values(2,'seetha','sales','atp',103)
+
+1 row created.
+
+SQL> /
+Enter value for did: 3
+Enter value for dname: 'matha'
+Enter value for department: 'agent'
+Enter value for dadd: 'begaluru'
+Enter value for dno: 104
+old   1: insert into department values(&did,&dname,&department,&dadd,&dno)
+new   1: insert into department values(3,'matha','agent','begaluru',104)
+
+1 row created.
+
+SQL> /
+Enter value for did: 4
+Enter value for dname: 'ravi'
+Enter value for department: 'marketing'
+Enter value for dadd: 'mdk'
+Enter value for dno: 105
+old   1: insert into department values(&did,&dname,&department,&dadd,&dno)
+new   1: insert into department values(4,'ravi','marketing','mdk',105)
+
+1 row created.
+
+SQL> /
+Enter value for did: 5
+Enter value for dname: 'raju'
+Enter value for department: 'mareting'
+Enter value for dadd: 'mdk'
+Enter value for dno: 106
+old   1: insert into department values(&did,&dname,&department,&dadd,&dno)
+new   1: insert into department values(5,'raju','mareting','mdk',106)
+
+1 row created.
+
+SQL> select*from department;
+
+       DID DNAME      DEPARTMENT DADD              DNO
+---------- ---------- ---------- ---------- ----------
+         1 radha      hr         hyd               102
+         2 seetha     sales      atp               103
+         3 matha      agent      begaluru          104
+         4 ravi       marketing  mdk               105
+         5 raju       mareting   mdk               106
+
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL> ----------------------------------------------------------------------------
+SQL> now let go with sql commands
+SP2-0734: unknown command beginning "now let go..." - rest of line ignored.
+SQL> ------------------------------------------------------------
+SQL>
+SQL>
+SQL> ddl: in ddl we have five commans are there -------------drop ,alter,truncate,create,rename
+SP2-0734: unknown command beginning "ddl: in dd..." - rest of line ignored.
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL> select * from Employee1;
+
+       EID ENAME      EJOB             ESAL
+---------- ---------- ---------- ----------
+        12 radha      ml             350000
+        13 seetha     sales          500000
+        14 ganga      hr             700000
+        16 likhitha   ds             100000
+        17 nalina     da             560000
+        18 hema       pythondeve     500000
+
+6 rows selected.
+
+SQL> drop table Employee1;
+
+Table dropped.
+
+SQL> drop table Employee1;
+drop table Employee1
+           *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> select * from Employee1;
+select * from Employee1
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> select* from department;
+
+       DID DNAME      DEPARTMENT DADD              DNO
+---------- ---------- ---------- ---------- ----------
+         1 radha      hr         hyd               102
+         2 seetha     sales      atp               103
+         3 matha      agent      begaluru          104
+         4 ravi       marketing  mdk               105
+         5 raju       mareting   mdk               106
+
+SQL> rename table department to department1;
+rename table department to department1
+       *
+ERROR at line 1:
+ORA-00903: invalid table name
+
+
+SQL> rename table department as department1;
+rename table department as department1
+       *
+ERROR at line 1:
+ORA-00903: invalid table name
+
+
+SQL> rename  department to department1;
+rename  department to department1
+                      *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+SQL> rename  department to department2;
+
+Table renamed.
+
+SQL> rename table department2 to deapartment3;
+rename table department2 to deapartment3
+       *
+ERROR at line 1:
+ORA-00903: invalid table name
+
+
+SQL> select*from department2;
+
+       DID DNAME      DEPARTMENT DADD              DNO
+---------- ---------- ---------- ---------- ----------
+         1 radha      hr         hyd               102
+         2 seetha     sales      atp               103
+         3 matha      agent      begaluru          104
+         4 ravi       marketing  mdk               105
+         5 raju       mareting   mdk               106
+
+SQL> alter tanle department2 add(dmem number(10));
+alter tanle department2 add(dmem number(10))
+      *
+ERROR at line 1:
+ORA-00940: invalid ALTER command
+
+
+SQL> alter table department2 add(dmem number(10));
+
+Table altered.
+
+SQL> select*from department2;
+
+       DID DNAME      DEPARTMENT DADD              DNO       DMEM
+---------- ---------- ---------- ---------- ---------- ----------
+         1 radha      hr         hyd               102
+         2 seetha     sales      atp               103
+         3 matha      agent      begaluru          104
+         4 ravi       marketing  mdk               105
+         5 raju       mareting   mdk               106
+
+SQL> alter table department2 modify(dno number(50));
+alter table department2 modify(dno number(50))
+                                          *
+ERROR at line 1:
+ORA-01727: numeric precision specifier is out of range (1 to 38)
+
+
+SQL> alter table department2 modify(dno number(38));
+
+Table altered.
+
+SQL> select*from department2;
+
+       DID DNAME      DEPARTMENT DADD              DNO       DMEM
+---------- ---------- ---------- ---------- ---------- ----------
+         1 radha      hr         hyd               102
+         2 seetha     sales      atp               103
+         3 matha      agent      begaluru          104
+         4 ravi       marketing  mdk               105
+         5 raju       mareting   mdk               106
+
+SQL> desc department2;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DID                                                NUMBER(10)
+ DNAME                                              VARCHAR2(10)
+ DEPARTMENT                                         VARCHAR2(10)
+ DADD                                               VARCHAR2(10)
+ DNO                                                NUMBER(38)
+ DMEM                                               NUMBER(10)
+
+SQL> alter table deaprtment2 modify(dadd varchar2(50));
+alter table deaprtment2 modify(dadd varchar2(50))
+*
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> alter table department2 modify(dadd varchar2(50));
+
+Table altered.
+
+SQL> desc department2;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DID                                                NUMBER(10)
+ DNAME                                              VARCHAR2(10)
+ DEPARTMENT                                         VARCHAR2(10)
+ DADD                                               VARCHAR2(50)
+ DNO                                                NUMBER(38)
+ DMEM                                               NUMBER(10)
+
+SQL> select * from department2;
+
+       DID DNAME      DEPARTMENT
+---------- ---------- ----------
+DADD                                                      DNO       DMEM
+-------------------------------------------------- ---------- ----------
+         1 radha      hr
+hyd                                                       102
+
+         2 seetha     sales
+atp                                                       103
+
+         3 matha      agent
+begaluru                                                  104
+
+
+       DID DNAME      DEPARTMENT
+---------- ---------- ----------
+DADD                                                      DNO       DMEM
+-------------------------------------------------- ---------- ----------
+         4 ravi       marketing
+mdk                                                       105
+
+         5 raju       mareting
+mdk                                                       106
+
+
+SQL> alter table department2 modify(dadd varchar2(10));
+
+Table altered.
+
+SQL> select * from department2;
+
+       DID DNAME      DEPARTMENT DADD              DNO       DMEM
+---------- ---------- ---------- ---------- ---------- ----------
+         1 radha      hr         hyd               102
+         2 seetha     sales      atp               103
+         3 matha      agent      begaluru          104
+         4 ravi       marketing  mdk               105
+         5 raju       mareting   mdk               106
+
+SQL> alter table department2 rename column dadd to daddress;
+
+Table altered.
+
+SQL> select * from department2;
+
+       DID DNAME      DEPARTMENT DADDRESS          DNO       DMEM
+---------- ---------- ---------- ---------- ---------- ----------
+         1 radha      hr         hyd               102
+         2 seetha     sales      atp               103
+         3 matha      agent      begaluru          104
+         4 ravi       marketing  mdk               105
+         5 raju       mareting   mdk               106
+
+SQL> alter table department2 drop dmem;
+alter table department2 drop dmem
+                             *
+ERROR at line 1:
+ORA-00905: missing keyword
+
+
+SQL> alter table department2 drop table dmem;
+alter table department2 drop table dmem
+                             *
+ERROR at line 1:
+ORA-00905: missing keyword
+
+
+SQL> alter table department2 (dmem);
+alter table department2 (dmem)
+                        *
+ERROR at line 1:
+ORA-01735: invalid ALTER TABLE option
+
+
+SQL> alter table department2 drop (dmem);
+
+Table altered.
+
+SQL> select * from department2;
+
+       DID DNAME      DEPARTMENT DADDRESS          DNO
+---------- ---------- ---------- ---------- ----------
+         1 radha      hr         hyd               102
+         2 seetha     sales      atp               103
+         3 matha      agent      begaluru          104
+         4 ravi       marketing  mdk               105
+         5 raju       mareting   mdk               106
+
+SQL> create table department3 as select*from department2;
+
+Table created.
+
+SQL> ------------------------------------------------------------------------
+SQL> to create dummy table--------------------
+>
+SP2-0734: unknown command beginning "to create ..." - rest of line ignored.
+SQL>
+SQL> truncate table department3;
+
+Table truncated.
+
+SQL> select*from department3;
+
+no rows selected
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select*from department3;
+
+no rows selected
