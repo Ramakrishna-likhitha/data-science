@@ -1,0 +1,176 @@
+dept table
+===========
+create table dept(deptno number(3),dname varchar2(10),dloc varchar2(12));
+
+insert into dept1 values(10,'ECE','HYD'); 
+insert into dept1 values(20,'CSE','PUNE');
+insert into dept1 values(30,'EEE','VIZAG');
+insert into dept1 values(40,'MEC','DELHI');
+commit;
+
+emp table
+=========
+create table emp1(eid number(3),ename varchar2(10),esal number(10,2), deptno number(3),
+			job varchar2(10),comm number(6));
+
+insert into emp1 values(201,'Alan',9000,10,'Clerk',null);
+insert into emp1 values(202,'Kelvin',19000,10,'Clerk',500);
+
+insert into emp1 values(203,'Nancy',29000,20,'HR',300);
+insert into emp1 values(204,'Branda',18000,20,'HR',700);
+
+insert into emp1 values(205,'Nelson',19000,30,'Manager',500);
+insert into emp1 values(206,'Jose',49000,30,'Manager',200);
+
+commit;
+
+
+
+
+select command
+==============
+It is used to select the records from database table.
+
+syntax:
+	select * from <table_name>;
+
+	Here '*' means all rows and columns.
+
+ex:
+	
+	select * from emp;
+	select * from dept;
+	select * from student;
+
+Projection:
+-----------
+Selecting specific columns from the database table is called projection.
+ex:
+	select sno,sname,sadd from student;
+	
+	select sno,sname from student;
+	
+	select sno from student;
+
+In select command we can perform arithmetic operations also.
+ex:
+	select sno+100 from student;
+	select sno-100 from student;
+	select sno*10 from student;	
+
+Column alias
+------------
+A userdefined heading given to a column is called column alias.
+
+Column alias can be applied to any column.
+
+Column alias are temperory , once the query is executed we will loss the column alias.
+
+ex:
+	select sno+100 as SNO from student;
+
+	select sno as roll_no ,sname as Name,sadd as City from student;
+
+
+Interview Queries
+===============
+Q)Write a query to display all the tables present in database?
+
+	select * from tab;
+
+Q)Write a query to display logical database name?
+
+	select * from global_name; // XE 
+				   // ORCL 
+
+Q)Write a query to display employee information from emp table?
+
+	select * from emp;
+
+
+Q)Write a query to display employee id, employee name  and employee salary from emp table?
+
+	select eid,ename,esal from emp;
+
+
+Q)Write a query to display employee id, employee name, employee salary and annual salary from emp table?
+
+	select eid,ename,esal,esal*12 from emp;
+
+
+Q)Write a query to display employee id, employee name, employee salary and annual salary as ANNUAL_SAL from emp table?
+
+	select eid,ename,esal,esal*12 as ANNUAL_SAL from emp;
+
+Where clause
+============
+Where clause is used to select specific records from database table.
+
+syntax:
+	select * from <table_name> where condition;
+
+ex:
+	select * from student where sno=101;
+
+	select * from student where sname='ravi';
+
+	select * from student where sadd='pune';
+
+
+Interview Queries
+-----------------
+Q) Write a query to display employees information those who are working in 10 department?
+
+	select * from emp where deptno=10; 
+
+
+Q) Write a query to display employees information whose who are working as a Manager?
+
+	select * from emp where job='Manager';
+
+
+Q) Write a query to  display employees information whose commission is null?
+
+	select * from emp where comm is null;
+
+Update command
+===============
+Update command is used to modify the data present in a database table.
+
+syntax:
+	update <table_name> set <column_name>=value where condition;
+ex:
+	update student set sname='rani' where sno=101;
+
+	update student set sname='alan',sadd='noida' where sno=102;
+
+Note:
+-----
+	If we won't use where clause then all rows will be updated.
+	ex:
+		update student set sname='raja';
+
+		commit;
+
+Delete command
+==============
+Delete command is used to delete the records from database table.
+
+syntax:
+	delete from <table_name> where condition;
+ex:
+	delete from student where sno=101;
+	delete from student where sname='ravi';
+	delete from student where sadd is null;		
+	
+Note:
+-----
+	If we won't use where clause then all rows will be deleted.
+	ex:
+		delete from student;
+		delete from dept;
+		delete from emp;
+		commit;
+Note:
+----
+	ALL DML operations are temperory.

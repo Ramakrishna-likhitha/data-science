@@ -1,0 +1,93 @@
+Delete command
+==============
+Delete command is used to delete the records from database table.
+
+syntax:
+	delete from <table_name> where condition;
+ex:
+	delete from student where sno=101;
+	delete from student where sname='ravi';
+	delete from student where sadd is null;		
+	
+Note:
+-----
+	If we won't use where clause then all rows will be deleted.
+	ex:
+		delete from student;
+		delete from dept;
+		delete from emp;
+		commit;
+Note:
+----
+	ALL DML operations are temperory.
+
+
+Interview Queries
+----------------
+Q) Write a query to increment salary of a employee by 1000 whose employee id is 201?
+
+	update emp set esal=esal+1000 where eid=201;
+
+
+Q) Write a query to promote employee from clerk to salesman whose employee id is 202?
+
+	update emp set job='salesman' where eid=202;
+
+
+Q) Write a query to terminate employees whose salary is greater then 30000?
+
+	delete from emp where esal>30000;  
+ 
+Q) Write a query to delete student record who is living in hyderabad?
+
+	delete from student where sadd='hyd';
+
+Logical Operators  
+================
+Logical operators are used to declare multiple conditions in where clause.
+
+We have three logical operators.
+
+1) AND 
+
+2) OR 
+
+3) NOT 
+
+1) AND 
+------
+It will return the records if all the conditions are true.
+
+In AND operator all conditions must be from same row.
+
+ex:
+---
+	select * from emp where ename='Alan' AND esal=9000;	
+
+	select * from emp where ename='Alan' AND esal=19000; // no rows selected 
+
+2) OR 
+------
+It will return the records if any condition is true.
+
+In OR operator conditions can be from any row.
+
+ex:
+	select * from emp where ename='Alan' OR esal=9000;
+
+	select * from emp where ename='Alan' OR esal=19000;	
+
+	select * from emp where ename='Alan' OR esal=79000;	
+
+3) NOT 
+------
+It will return all the records except the condition.
+
+A '<>' symbol denoted as NOT operator.
+
+ex:
+	select * from student where NOT sno=101;
+	select * from student where  sno<>101;
+	
+	select * from student where NOT sname='raja';
+	select * from student where sname<>'raja';

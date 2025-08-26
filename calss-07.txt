@@ -1,0 +1,226 @@
+Functions
+==========
+Functions are used to manipulate the data items and give the result.
+
+We have two types of functions.
+
+1) Group Functions / Multiple Rows Functions 
+
+2) Scalar Functions / Single Rows Functions 
+
+1) Group Functions
+-------------------
+Group functions are applicable for multiple rows.
+
+We have following list of group functions.
+
+ex:
+	sum(), avg(), max(), min(), count(*) and count(express). 
+
+
+Q) Write a query to display sum of salary of each employee?
+
+	select sum(esal) from emp;
+
+Q) Write a query to display average salary of each employee?
+
+	select avg(esal) from emp;	
+
+Q) Write a query to display highest salary from employee table?
+
+	select max(esal) from emp;
+
+Q) Write a query to display least/lowest salary from employee table?
+
+	select min(esal) from emp;
+
+
+Q)What is the difference between count(*) and count(exp)? 
+
+count(*)
+--------
+	It will return number of records present in database table.
+
+	It will include null records.
+ 
+	ex:
+		select count(*) from emp;
+
+count(exp)
+---------
+	It will return number of values present in a column.
+
+	It will not include null values.
+	
+	ex:
+		select count(eid) from emp;
+	        select count(comm) from emp;
+
+Userlist table
+===============
+drop table userlist;
+
+create table userlist(uname varchar2(10),pwd varchar2(10));
+
+insert into userlist values('raja','rani');
+
+insert into userlist values('king','kingdom');
+
+commit;
+
+Q) Write a query to check username and password is valid or not?
+
+	select count(*) from userlist where uname='raja' AND pwd='rani'; // 1 
+
+	select count(*) from userlist where uname='raja' AND pwd='rani2'; // 0 
+
+
+Dual table
+===========
+Dual table is a dummy table which is used to perform arithmetic operations and to see the current system date.
+
+Dual table contains one row and one column.
+
+ex:
+	select 10+20 from dual;
+	select 10*20 from dual;
+	select sysdate from dual;
+	select current_date from dual;
+
+
+2)Scalar Functions
+==================
+Scalar Functions are applicable for single row.
+
+Scalar functions are divided into three types.
+
+i) Character functions 
+
+ii) Number functions 
+
+iii) Date functions    
+
+i) Character functions 
+------------------------
+upper()
+-------
+	It will convert lowercase to uppercase.
+	ex:
+		select upper('oracle') from dual;
+		select upper('oracle') as UPPER from dual;
+
+lower()
+-------
+	It will convert uppercase to lowercase.
+	ex:
+		select lower('ORACLE') from dual; 
+
+initcap()
+---------
+	It will convert initial letter to capital.
+	ex:
+		select initcap('this is oracle class') from dual;	
+
+lpad()
+------
+	It will pad the characters at left side.
+	ex:
+		select lpad('oracle',10,'z') from dual; //zzzzoracle 
+
+rpad()
+------
+	It will pad the characters at right side.
+	ex:
+		select rpad('oracle',10,'z') from dual; //oraclezzzz
+
+ltrim()
+---------
+	It will trim the characters from left side.
+	ex:
+		select ltrim('zzoraclezz','z') from dual; // oraclezz
+
+rtrim()
+--------
+	It will trim the characters from right side.
+	ex:
+		select rtrim('zzoraclezz','z') from dual; // zzoracle
+
+trim()
+-------
+	It will trim the characters from both the sides.
+	ex:
+		select trim('z' from 'zzoraclezz') from dual; // oracle 
+
+concat() 
+-------
+	It will concatinate the strings.
+	ex:
+		select concat('mega','star') from dual;
+
+		select concat(concat('mega','star'),'chiru') from dual;
+
+replace()
+--------
+	It will replace the character in a string.
+	ex:
+		select replace(esal,0,9) from emp;
+
+ii) Number functions
+---------------------
+
+abs()
+-------
+	It will return absoluate value.
+	ex:
+		select abs(-10) from dual; //10
+		select abs(10) from dual; //10
+
+power(A,B)
+------------
+	It will return power value.
+	ex:
+		select power(5,3) from dual;
+
+sqrt()
+------
+	It will return exact square root value.
+	ex:
+		select sqrt(25) from dual; //5
+
+		select sqrt(26) from dual; //5.09
+
+ceil()
+-----
+	It will return ceil value.
+	ex:
+		select ceil(10.2) from dual; // 11
+
+		select ceil(56.7) from dual; // 57
+
+floor()
+------
+	It will return floor value.
+	ex:
+		select floor(10.2) from dual; //10
+		
+		select floor(10.9) from dual; //10
+
+round()
+------
+	It will return nearest value.
+	ex:
+		select round(10.4) from dual; // 10
+
+		select round(10.5) from dual; //11
+
+greatest()
+---------
+	It will return greatest value.
+	ex:
+		select greatest(101,102,103) from dual; 
+
+least() 
+------
+	It will return least value.
+	ex:
+		select least(101,102,103) from dual;//101

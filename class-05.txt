@@ -1,0 +1,112 @@
+Between operator
+================
+Between operator will return the records those who are in the range of values.
+
+Between operator will take the support of AND operator.
+
+In Between operator first we need to declare lower limit then higher limit.
+
+ex:
+	select * from emp where eid between 201 AND 206;
+
+	select * from emp where eid between 206 AND 201; // no rows selected
+
+	select * from emp where esal between 15000 AND 30000;
+
+	select eid,ename,esal from emp where deptno between 10 AND 30;
+
+
+IN operator
+===========
+IN operator is a replacement of OR operator.
+
+It will return the values those who are matching in the list of values.
+
+ex:
+	select * from emp where eid IN(201,202,203);
+
+	select * from emp where deptno IN(10,20,30);
+
+	select * from emp where ename IN ('Alan','Jose','Nelson');
+
+
+Pattern Matching operators
+===========================
+Pattern matching operators are used to select the letters from database table.
+
+Pattern matching operators will take the support of like keyword.
+
+We have two types of pattern matching operators.
+
+1) Percentage(%) 
+
+2) Underscore(_) 
+
+1) Percentage(%) 
+----------------
+Q)Write a query to display employee information whose employee name starts with 'A' letter?
+
+	select * from emp where ename like 'A%';
+
+
+
+Q)Write a query to display employee information whose employee name ends with 'n' letter?
+
+	select * from emp where ename like '%n';
+
+
+Q)Write a query to display employee information whose employee name having 'l' as middle letter?
+
+	select * from emp where ename like '%l%';
+
+2) Underscore(_) 
+-----------------
+
+Q) Write a query to display employee information whose employee name having 
+   second letter as 'l' letter?
+
+	select * from emp where ename like '_l%';
+
+
+Q)Write a query to display employee information whose employee name having 
+  second last letter as 'd'?
+
+	select * from emp where ename like '%d_';
+
+
+Q)Write a query to display employee information whose employee name having 
+third letter as 'a'?
+
+	select * from emp where ename like '__a%';
+
+
+Duplicate table or Copy of a table
+==================================
+Creating a duplicate table or copy of a table is a save side for the programmer because if something goes wrong we can recover that situation using duplicate table or copy of a table.
+
+Using create and select command we can create duplicate table.
+
+ex:
+---
+	create table stud as select * from student;
+
+	create table employee as select * from emp;
+
+	create table employee as select eid,ename,esal from emp;
+
+	create table employee as select * from emp where deptno=10;
+
+	create table employee as select * from emp where deptno<>10;
+
+	create table employee as select * from emp eid IN(201,202,203);
+
+	create table employee as select * from emp esal between 15000 AND 30000;
+
+	create table employee as select * from emp name like 'A%';
+
+cl scr
+=======
+It is used to clear the output screen of SQL command prompt.
+
+syntax:
+	cl scr

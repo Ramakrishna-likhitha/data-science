@@ -1,0 +1,134 @@
+DDL commands
+============
+create - (tables)
+alter  - (columns)
+drop   - (tables)
+truncate - (rows/records)
+rename - (tables)
+
+alter command
+=============
+Using alter command we can perform following activities very easily.
+
+i) Adding the new columns
+
+ii) Modifying the exiting columns 
+
+iii) Renaming the columns
+
+iv) Droping the columns
+
+i) Adding the new columns
+--------------------------
+Using alter command we can add new columns to a existing table.
+
+syntax:
+-----
+	alter table <table_name> ADD (col datatype(size));
+
+ex:
+	alter table student ADD (state varchar2(10));
+	alter table student ADD (pincode number(8));
+	alter table student ADD (state varchar2(10), pincode number(8));
+
+	update student set state='Telangana' where sno=101;
+
+ii) Modifying the exiting columns 
+------------------------------
+Using alter command we can modify the existing columns.
+
+We can change size of a column only when existing values are fit into new size.
+
+ex:
+	desc  student;
+
+	alter table student MODIFY (state varchar2(12));
+	
+	desc student;
+
+We can change the datatype of a column only if that column is empty.
+
+ex:
+---
+	desc student;
+
+	alter table student MODIFY (pincode varchar2(8));
+
+	desc student;
+
+iii) Renaming a columns 
+------------------------
+Using alter command we can rename a column name.
+
+syntax:
+	alter table <table_name> RENAME column <old_name> to <new_name>
+
+ex:
+	alter table student RENAME  column  pincode to country;
+
+	alter table student RENAME  column  sadd to city;
+
+	alter table emp RENAME  column  esal to dailywages;
+
+	alter table emp RENAME  column  job to designation;
+
+
+iv)dropping the columns
+------------------------
+Using alter command we can drop the columns.
+
+syntax:
+	alter table <table_name> DROP (col1,col2,..,colN);
+ex:
+	alter table student DROP (state,country);
+
+drop  command
+=============
+It is used to drop the tables from database.
+
+syntax:
+	drop table <table_name>;
+ex:
+	drop table student;
+	drop table emp;
+	drop table dept;
+
+truncate command
+==================
+A trunate command is used to delete the records permanently from database table.
+
+syntax:
+	truncate table <table_name>;
+ex:
+	truncate table emp;
+	truncate table student;
+	truncate table dept;
+
+Q) What is the difference between delete and truncate command?
+
+delete					truncate 
+----------				----------
+It will delete the records temperory.	It will delete the records permanently.
+
+We can rollback the data.		We can't rollback the data.
+
+Where clause can be used.		Where clause can't be used.
+
+It is a DML command.			It is a DDL command.
+
+
+rename command
+==============
+It is used to rename the table name.
+
+syntax:
+	rename  <old_name> to <new_name>;
+
+ex:
+	rename emp to employee;
+
+	rename student to students;
+	
+	rename dept to department;
+
+
