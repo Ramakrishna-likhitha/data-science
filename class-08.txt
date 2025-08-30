@@ -1,0 +1,178 @@
+Working with Date values
+=========================
+All database softwares support date values.
+
+It is not recommanded to store date values in the form of varchar2.
+
+Every database supports different date patterns.
+
+ex:
+	oracle 	--	dd-MMM-yy
+	
+	MySQL	--	yyyy-MM-dd	
+
+emp1 table
+============
+drop table emp1;
+
+create table emp1(eid number(3),ename varchar2(10),edoj date);
+
+insert into emp1 values(101,'Alan','01-JAN-24');
+
+insert into emp1 values(102,'Jose','15-NOV-23');
+
+insert into emp1 values(103,'Nelson',sysdate);
+
+commit;
+
+
+iii) Date functions
+-----------------
+We have following list of date functions.
+
+ADD_MONTHS()
+--------------
+	It will add the months in a given date.
+	ex:
+		select ADD_MONTHS(sysdate,6) from dual;
+
+MONTHS_BETWEEN()
+----------------
+	It will return number of months between two given dates.
+	ex:
+		select MONTHS_BETWEEN('01-JAN-23','11-JAN-24') from dual; //-12.3
+
+		select ABS(MONTHS_BETWEEN('01-JAN-23','11-JAN-24')) from dual; //12.3
+
+NEXT_DAY()
+------------
+	It will return next date of a given day in a week.
+	ex:
+		select NEXT_DAY(sysdate,'SUNDAY') from dual;
+
+		select NEXT_DAY(sysdate,'THURSDAY') from dual;
+
+LAST_DAY()
+---------
+	It will return last date of a month.
+	ex:
+		select LAST_DAY(sysdate) from dual;
+		
+		select LAST_DAY('15-FEB-24') from dual;
+
+Conversion functions
+----------------------
+It is used to convert from one type to another type.
+
+ex:
+	TO_CHAR() 
+
+number to_char()
+-----------------
+It will accept '9' in digits , dollar and euro symbols.
+ex:	
+	select  eid,ename,TO_CHAR(esal,'9,999') from emp;
+
+	select  eid,ename,TO_CHAR(esal,'99,999') from emp;
+
+	select  eid,ename,TO_CHAR(esal,'$99,999') from emp;
+
+	select  eid,ename,TO_CHAR(esal,'$99,999') as ESAL from emp;
+		
+
+date  to_char()
+----------------
+	select  TO_CHAR(sysdate,'dd-MM-yyyy') from dual;
+
+	select  eid,ename,TO_CHAR(sysdate,'dd-MM-yyyy') as DOJ from emp1;
+
+	select  TO_CHAR(sysdate,'month') from dual;
+
+	select  TO_CHAR(sysdate,'mon') from dual;
+
+	select  TO_CHAR(sysdate,'year') from dual;
+
+	select  TO_CHAR(sysdate,'yyyy') from dual;
+
+	select  TO_CHAR(sysdate,'mm') from dual;
+
+	select  TO_CHAR(sysdate,'dd') from dual;
+
+	select  TO_CHAR(sysdate,'day') from dual;	
+
+	select  TO_CHAR(sysdate,'dy') from dual;
+
+	select  TO_CHAR(sysdate,'HH:MI:SS') from dual;
+
+	select  TO_CHAR(sysdate,'yyyy-MM-dd  HH:MI:SS') from dual;
+
+
+Group by clause
+===============
+Group by clause is used to divide the rows into groups so that we can apply group functions.
+		
+A column which we used in select clause then same column must use in group by clause.
+
+
+Q) Write a query to display sum of salary of each department?
+
+	select sum(esal),deptno from emp group by deptno;
+	
+
+Q) Write a query to display average salary of each job?
+
+	select avg(esal),job from emp group by job;
+	
+
+Q) Write a query to display highest salary of each department?
+
+	select max(esal),deptno from emp group by deptno;
+
+
+Q) Write a query to display lowest salary of each job?
+
+	select min(esal),job from emp group by job;
+
+Having clause
+=============
+Having clause is used to filter the rows from group by clause.
+
+Having clause must used after group by clause.
+
+Q)Write a query to display sum of salary of each department whose salary is greater then 30000?
+
+	select sum(esal),deptno from emp group by deptno having sum(esal)>30000;
+
+
+Q) Write a query to display average salary of each job where average salary is less then 40000?
+
+	select avg(esal),job from emp group by job having avg(esal)<40000;
+
+Order by clause
+===============
+It is used to arrange the rows in a table.
+
+By default it will arrange in ascending order.
+
+ex:
+	select * from emp order by eid;
+
+	select * from emp order by eid desc;
+
+	select * from emp order by ename;
+
+	select * from emp order by esal;
+
+
+Q)Write a query to display sum of salary of each department whose salary is greater then 30000?
+
+	select sum(esal),deptno from emp2 group by deptno 
+	having sum(esal)>30000
+	order by deptno;
+
+
+Q)Write a query to display sum of salary of each department except 20 department whose salary is greater then 30000?
+
+	select sum(esal),deptno from emp2 where deptno<>20 group by deptno 
+	having sum(esal)>30000
+	order by deptno;
