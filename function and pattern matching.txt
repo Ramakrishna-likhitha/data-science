@@ -1,0 +1,642 @@
+
+SQL*Plus: Release 11.2.0.2.0 Production on Mon Sep 1 23:26:34 2025
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+SQL> conn
+Enter user-name: system
+Enter password:
+Connected.
+SQL> select * from department1;
+
+       DID DNAME      DESIGNATIO
+---------- ---------- ----------
+        11 engineer   manager
+        12 research   professor
+        13 salesman   sales
+        14 operator   operator
+        15 reception  recep.nist
+
+SQL> select * from deapartment1 where dname like 'e%';
+select * from deapartment1 where dname like 'e%'
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> select * from department1 where dname like 'e%';
+
+       DID DNAME      DESIGNATIO
+---------- ---------- ----------
+        11 engineer   manager
+
+SQL> select * from department1 where dname like 's%';
+
+       DID DNAME      DESIGNATIO
+---------- ---------- ----------
+        13 salesman   sales
+
+SQL> select * from department1 where dname like '%h';
+
+       DID DNAME      DESIGNATIO
+---------- ---------- ----------
+        12 research   professor
+
+SQL> select * from department1 where dname like '%e%';
+
+       DID DNAME      DESIGNATIO
+---------- ---------- ----------
+        11 engineer   manager
+        12 research   professor
+        13 salesman   sales
+        14 operator   operator
+        15 reception  recep.nist
+
+SQL> select * from department1 where dname like '%___e%';
+
+       DID DNAME      DESIGNATIO
+---------- ---------- ----------
+        11 engineer   manager
+        12 research   professor
+        13 salesman   sales
+        15 reception  recep.nist
+
+SQL> select * from department1 where dname like '___e%';
+
+       DID DNAME      DESIGNATIO
+---------- ---------- ----------
+        12 research   professor
+        13 salesman   sales
+        15 reception  recep.nist
+
+SQL> select * from department1 where dname like '_e%';
+
+       DID DNAME      DESIGNATIO
+---------- ---------- ----------
+        12 research   professor
+        15 reception  recep.nist
+
+SQL> select * from department1 where dname like '__e%';
+
+       DID DNAME      DESIGNATIO
+---------- ---------- ----------
+        14 operator   operator
+
+SQL> select * from department1 where dname like 'e_%';
+
+       DID DNAME      DESIGNATIO
+---------- ---------- ----------
+        11 engineer   manager
+
+SQL> select * from department1 where dname like 'e_';
+
+no rows selected
+
+SQL> select * from department1 where dname like 'e__';
+
+no rows selected
+
+SQL> select * from department1 where dname like '%e__';
+
+       DID DNAME      DESIGNATIO
+---------- ---------- ----------
+        11 engineer   manager
+
+SQL> ....................................................functions...................................
+SP2-0734: unknown command beginning "............." - rest of line ignored.
+SQL> select * from deapartment1
+  2  select * from deapartment1;
+select * from deapartment1
+*
+ERROR at line 2:
+ORA-00933: SQL command not properly ended
+
+
+SQL> select * from deapartment1;
+select * from deapartment1
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> select * from deapartment1;
+select * from deapartment1
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> select * from departmant1;
+select * from departmant1
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> select * from department1;
+
+       DID DNAME      DESIGNATIO
+---------- ---------- ----------
+        11 engineer   manager
+        12 research   professor
+        13 salesman   sales
+        14 operator   operator
+        15 reception  recep.nist
+
+SQL> select sum(did) from department1;
+
+  SUM(DID)
+----------
+        65
+
+SQL> select avg(did) from department1;
+
+  AVG(DID)
+----------
+        13
+
+SQL> select count(*)from department1;
+
+  COUNT(*)
+----------
+         5
+
+SQL> select count(did)from department1;
+
+COUNT(DID)
+----------
+         5
+
+SQL> insert into department(16,'cbcbvnc','dtfvww');
+insert into department(16,'cbcbvnc','dtfvww')
+                       *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword
+
+
+SQL> insert into department1 values(16,'cbcbvnc','dtfvww');
+
+1 row created.
+
+SQL> insert into department1 values(,'cbcbvnc','dtfvww');
+insert into department1 values(,'cbcbvnc','dtfvww')
+                               *
+ERROR at line 1:
+ORA-00936: missing expression
+
+
+SQL> insert into department1 values(null,'cbcbvnc','dtfvww');
+
+1 row created.
+
+SQL> select * from deapartment1;
+select * from deapartment1
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> select * from department1;
+
+       DID DNAME      DESIGNATIO
+---------- ---------- ----------
+        11 engineer   manager
+        12 research   professor
+        13 salesman   sales
+        14 operator   operator
+        15 reception  recep.nist
+        16 cbcbvnc    dtfvww
+           cbcbvnc    dtfvww
+
+7 rows selected.
+
+SQL> select count(did)from department1;
+
+COUNT(DID)
+----------
+         6
+
+SQL> select count(*)from department1;
+
+  COUNT(*)
+----------
+         7
+
+SQL> select upper(did)from department1;
+
+UPPER(DID)
+----------------------------------------
+11
+12
+13
+14
+15
+16
+
+
+7 rows selected.
+
+SQL> select upper(dname)from department1;
+
+UPPER(DNAM
+----------
+ENGINEER
+RESEARCH
+SALESMAN
+OPERATOR
+RECEPTION
+CBCBVNC
+CBCBVNC
+
+7 rows selected.
+
+SQL> select lower(dname)from department1;
+
+LOWER(DNAM
+----------
+engineer
+research
+salesman
+operator
+reception
+cbcbvnc
+cbcbvnc
+
+7 rows selected.
+
+SQL> select initcap(dname)from department1;
+
+INITCAP(DN
+----------
+Engineer
+Research
+Salesman
+Operator
+Reception
+Cbcbvnc
+Cbcbvnc
+
+7 rows selected.
+
+SQL> select lpad(dname)from department1;
+select lpad(dname)from department1
+       *
+ERROR at line 1:
+ORA-00938: not enough arguments for function
+
+
+SQL> select lpad(dname)from department1;
+select lpad(dname)from department1
+       *
+ERROR at line 1:
+ORA-00938: not enough arguments for function
+
+
+SQL> select lpad('dname','r',5)from department1;
+select lpad('dname','r',5)from department1
+                    *
+ERROR at line 1:
+ORA-01722: invalid number
+
+
+SQL> select lpad('dname','5',5)from department1;
+
+LPAD(
+-----
+dname
+dname
+dname
+dname
+dname
+dname
+dname
+
+7 rows selected.
+
+SQL> select lpad('dname','5',3)from department1;
+
+LPAD(
+-----
+dname
+dname
+dname
+dname
+dname
+dname
+dname
+
+7 rows selected.
+
+SQL> select lpad('dname','3',3)from department1;
+
+LPA
+---
+dna
+dna
+dna
+dna
+dna
+dna
+dna
+
+7 rows selected.
+
+SQL> select lpad('dnamegyhgut','5',3)from department1;
+
+LPAD(
+-----
+dname
+dname
+dname
+dname
+dname
+dname
+dname
+
+7 rows selected.
+
+SQL> select lpad('dnamegyhgut','5',)from department1;
+select lpad('dnamegyhgut','5',)from department1
+                              *
+ERROR at line 1:
+ORA-00936: missing expression
+
+
+SQL> select lpad('dnamegyhgut','5')from department1;
+
+LPAD(
+-----
+dname
+dname
+dname
+dname
+dname
+dname
+dname
+
+7 rows selected.
+
+SQL> select lpad('dnamegyhgut','5','t')from department1;
+
+LPAD(
+-----
+dname
+dname
+dname
+dname
+dname
+dname
+dname
+
+7 rows selected.
+
+SQL> select lpad('dnamegyhgut','10','t')from department1;
+
+LPAD('DNAM
+----------
+dnamegyhgu
+dnamegyhgu
+dnamegyhgu
+dnamegyhgu
+dnamegyhgu
+dnamegyhgu
+dnamegyhgu
+
+7 rows selected.
+
+SQL> select lpad('dnamegyhgut','16','t')from department1;
+
+LPAD('DNAMEGYHGU
+----------------
+tttttdnamegyhgut
+tttttdnamegyhgut
+tttttdnamegyhgut
+tttttdnamegyhgut
+tttttdnamegyhgut
+tttttdnamegyhgut
+tttttdnamegyhgut
+
+7 rows selected.
+
+SQL> select Rpad('dnamegyhgut','16','t')from department1;
+
+RPAD('DNAMEGYHGU
+----------------
+dnamegyhgutttttt
+dnamegyhgutttttt
+dnamegyhgutttttt
+dnamegyhgutttttt
+dnamegyhgutttttt
+dnamegyhgutttttt
+dnamegyhgutttttt
+
+7 rows selected.
+
+SQL> select Rtrim('dnamegyhgut','16','t')from department1;
+select Rtrim('dnamegyhgut','16','t')from department1
+       *
+ERROR at line 1:
+ORA-00939: too many arguments for function
+
+
+SQL> select Rtrim('dnamegyhgut','t')from department1;
+
+RTRIM('DNA
+----------
+dnamegyhgu
+dnamegyhgu
+dnamegyhgu
+dnamegyhgu
+dnamegyhgu
+dnamegyhgu
+dnamegyhgu
+
+7 rows selected.
+
+SQL> select Rtrim('dnamegyhgut',10,'t')from department1;
+select Rtrim('dnamegyhgut',10,'t')from department1
+       *
+ERROR at line 1:
+ORA-00939: too many arguments for function
+
+
+SQL> select Rtrim('dnamegyhgut','10')from department1;
+
+RTRIM('DNAM
+-----------
+dnamegyhgut
+dnamegyhgut
+dnamegyhgut
+dnamegyhgut
+dnamegyhgut
+dnamegyhgut
+dnamegyhgut
+
+7 rows selected.
+
+SQL> select Rtrim('dnamegyhgut','19')from department1;
+
+RTRIM('DNAM
+-----------
+dnamegyhgut
+dnamegyhgut
+dnamegyhgut
+dnamegyhgut
+dnamegyhgut
+dnamegyhgut
+dnamegyhgut
+
+7 rows selected.
+
+SQL> select Rtrim('dnamegyhgut','1')from department1;
+
+RTRIM('DNAM
+-----------
+dnamegyhgut
+dnamegyhgut
+dnamegyhgut
+dnamegyhgut
+dnamegyhgut
+dnamegyhgut
+dnamegyhgut
+
+7 rows selected.
+
+SQL> select Rtrim('dname')from department1;
+
+RTRIM
+-----
+dname
+dname
+dname
+dname
+dname
+dname
+dname
+
+7 rows selected.
+
+SQL> select Rtrim('dname','e')from department1;
+
+RTRI
+----
+dnam
+dnam
+dnam
+dnam
+dnam
+dnam
+dnam
+
+7 rows selected.
+
+SQL> select trim('dname','e')from department1;
+select trim('dname','e')from department1
+                   *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> select trim(e from 'dname')from department1;
+select trim(e from 'dname')from department1
+            *
+ERROR at line 1:
+ORA-00904: "E": invalid identifier
+
+
+SQL> select trim('e' from 'dname')from department1;
+
+TRIM
+----
+dnam
+dnam
+dnam
+dnam
+dnam
+dnam
+dnam
+
+7 rows selected.
+
+SQL> select replace(did ,'s')from department1;
+
+REPLACE(DID,'S')
+----------------------------------------
+11
+12
+13
+14
+15
+16
+
+
+7 rows selected.
+
+SQL> select replace(did ,id,di)from department1;
+select replace(did ,id,di)from department1
+                       *
+ERROR at line 1:
+ORA-00904: "DI": invalid identifier
+
+
+SQL> select replace('did' ,'i','d')from department1;
+
+REP
+---
+ddd
+ddd
+ddd
+ddd
+ddd
+ddd
+ddd
+
+7 rows selected.
+
+SQL> select power(did) from deapartment1;
+select power(did) from deapartment1
+       *
+ERROR at line 1:
+ORA-00909: invalid number of arguments
+
+
+SQL> select power(3.9) from deapartment1;
+select power(3.9) from deapartment1
+       *
+ERROR at line 1:
+ORA-00909: invalid number of arguments
+
+
+SQL> select power(3,9) from deapartment1;
+select power(3,9) from deapartment1
+                       *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> select power(3,9) from department1;
+
+POWER(3,9)
+----------
+     19683
+     19683
+     19683
+     19683
+     19683
+     19683
+     19683
+
+7 rows selected.
+
+SQL> select power(3,9) from duL;
+select power(3,9) from duL
+                       *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> select power(3,9) from dual;
+
+POWER(3,9)
+----------
+     19683
