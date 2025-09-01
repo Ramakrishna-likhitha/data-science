@@ -1,0 +1,755 @@
+
+SQL*Plus: Release 11.2.0.2.0 Production on Mon Sep 1 14:29:25 2025
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+SQL> conn
+Enter user-name: system
+Enter password:
+Connected.
+SQL> select * from department1;
+
+       DID DNAME      DESIGNATIO
+---------- ---------- ----------
+        11 accounting manager
+        12 research   professor
+        13 salesman   sales
+        14 operator   operator
+        15 reception  recep.nist
+
+SQL> update deaprtment1 set daname='engineer' where did=11;
+update deaprtment1 set daname='engineer' where did=11
+       *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> update department1 set daname='engineer' where did=11;
+update department1 set daname='engineer' where did=11
+                       *
+ERROR at line 1:
+ORA-00904: "DANAME": invalid identifier
+
+
+SQL> update department1 set dname='engineer' where did=11;
+
+1 row updated.
+
+SQL> SELECT*from department1;
+
+       DID DNAME      DESIGNATIO
+---------- ---------- ----------
+        11 engineer   manager
+        12 research   professor
+        13 salesman   sales
+        14 operator   operator
+        15 reception  recep.nist
+
+SQL> select did as id from department1;
+
+        ID
+----------
+        11
+        12
+        13
+        14
+        15
+
+SQL> commit
+  2  ;
+
+Commit complete.
+
+SQL> select did as id from department1;
+
+        ID
+----------
+        11
+        12
+        13
+        14
+        15
+
+SQL> SELECT*from department1;
+
+       DID DNAME      DESIGNATIO
+---------- ---------- ----------
+        11 engineer   manager
+        12 research   professor
+        13 salesman   sales
+        14 operator   operator
+        15 reception  recep.nist
+
+SQL> select did as id from department;
+select did as id from department
+                      *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> select did as id from department1;
+
+        ID
+----------
+        11
+        12
+        13
+        14
+        15
+
+SQL> commite
+SP2-0042: unknown command "commite" - rest of line ignored.
+SQL> commit;
+
+Commit complete.
+
+SQL> SELECT*from department1;
+
+       DID DNAME      DESIGNATIO
+---------- ---------- ----------
+        11 engineer   manager
+        12 research   professor
+        13 salesman   sales
+        14 operator   operator
+        15 reception  recep.nist
+
+SQL> update deapartment1 set did=11 where designatiom='manager';
+update deapartment1 set did=11 where designatiom='manager'
+       *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> update department1 set did=11 where designatiom='manager';
+update department1 set did=11 where designatiom='manager'
+                                    *
+ERROR at line 1:
+ORA-00904: "DESIGNATIOM": invalid identifier
+
+
+SQL> update department1 set did=11 where designatio='manager';
+update department1 set did=11 where designatio='manager'
+                                    *
+ERROR at line 1:
+ORA-00904: "DESIGNATIO": invalid identifier
+
+
+SQL> update department1 set did=11 where designation='manager';
+
+1 row updated.
+
+SQL> SELECT*from department1;
+
+       DID DNAME      DESIGNATIO
+---------- ---------- ----------
+        11 engineer   manager
+        12 research   professor
+        13 salesman   sales
+        14 operator   operator
+        15 reception  recep.nist
+
+SQL> update department1 set did=11 where designation='man';
+
+0 rows updated.
+
+SQL> SELECT*from department1;
+
+       DID DNAME      DESIGNATIO
+---------- ---------- ----------
+        11 engineer   manager
+        12 research   professor
+        13 salesman   sales
+        14 operator   operator
+        15 reception  recep.nist
+
+SQL> select * from department1;
+
+       DID DNAME      DESIGNATIO
+---------- ---------- ----------
+        11 engineer   manager
+        12 research   professor
+        13 salesman   sales
+        14 operator   operator
+        15 reception  recep.nist
+
+SQL> update department1 set did=12 where designation='manager';
+
+1 row updated.
+
+SQL> select * from department1;
+
+       DID DNAME      DESIGNATIO
+---------- ---------- ----------
+        12 engineer   manager
+        12 research   professor
+        13 salesman   sales
+        14 operator   operator
+        15 reception  recep.nist
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select *from department1;
+
+       DID DNAME      DESIGNATIO
+---------- ---------- ----------
+        12 engineer   manager
+        12 research   professor
+        13 salesman   sales
+        14 operator   operator
+        15 reception  recep.nist
+
+SQL*Plus: Release 11.2.0.2.0 Production on Mon Sep 1 14:38:22 2025
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+SQL> conn
+Enter user-name: system
+Enter password:
+Connected.
+SQL> select * from department1;
+
+       DID DNAME      DESIGNATIO
+---------- ---------- ----------
+        12 engineer   manager
+        12 research   professor
+        13 salesman   sales
+        14 operator   operator
+        15 reception  recep.nist
+
+SQL> update department1 set did=11 where designation ='manager';
+
+1 row updated.
+
+SQL> select * from department1;
+
+       DID DNAME      DESIGNATIO
+---------- ---------- ----------
+        11 engineer   manager
+        12 research   professor
+        13 salesman   sales
+        14 operator   operator
+        15 reception  recep.nist
+
+SQL> commit;
+
+Commit complete.
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select * from department1;
+
+       DID DNAME      DESIGNATIO
+---------- ---------- ----------
+        11 engineer   manager
+        12 research   professor
+        13 salesman   sales
+        14 operator   operator
+        15 reception  recep.nist
+
+SQL> SELECT dname as name from designaton1;
+SELECT dname as name from designaton1
+                          *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> SELECT dname as name from department1;
+
+NAME
+----------
+engineer
+research
+salesman
+operator
+reception
+
+SQL> create tanel radhaa as select *f rom department1;
+create tanel radhaa as select *f rom department1
+       *
+ERROR at line 1:
+ORA-00901: invalid CREATE command
+
+
+SQL> create tabel radhaa as select *f rom department1;
+create tabel radhaa as select *f rom department1
+       *
+ERROR at line 1:
+ORA-00901: invalid CREATE command
+
+
+SQL> create table radhaa as select *f rom department1;
+create table radhaa as select *f rom department1
+                               *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> create table radhaa as select * from department1;
+
+Table created.
+
+SQL> select * from radha;
+
+        ID NAME                                                      AGE
+---------- -------------------------------------------------- ----------
+CITY
+--------------------------------------------------
+         1 Radha1                                                     20
+Vrindavan
+
+         2 Radha2                                                     22
+Mathura
+
+         3 Radha3                                                     24
+Barsana
+
+
+        ID NAME                                                      AGE
+---------- -------------------------------------------------- ----------
+CITY
+--------------------------------------------------
+         4 Radha4                                                     25
+Dwarka
+
+         5 Radha5                                                     27
+Gokul
+
+         6 Radha6                                                     23
+Vrindavan
+
+
+        ID NAME                                                      AGE
+---------- -------------------------------------------------- ----------
+CITY
+--------------------------------------------------
+         7 Radha7                                                     26
+Mathura
+
+         8 Radha8                                                     28
+Barsana
+
+         9 Radha9                                                     29
+Dwarka
+
+
+        ID NAME                                                      AGE
+---------- -------------------------------------------------- ----------
+CITY
+--------------------------------------------------
+        10 Radha10                                                    21
+Gokul
+
+        11 Radha11                                                    20
+Vrindavan
+
+        12 Radha12                                                    22
+Mathura
+
+
+        ID NAME                                                      AGE
+---------- -------------------------------------------------- ----------
+CITY
+--------------------------------------------------
+        13 Radha13                                                    24
+Barsana
+
+        14 Radha14                                                    25
+Dwarka
+
+        15 Radha15                                                    27
+Gokul
+
+
+        ID NAME                                                      AGE
+---------- -------------------------------------------------- ----------
+CITY
+--------------------------------------------------
+        16 Radha16                                                    23
+Vrindavan
+
+        17 Radha17                                                    26
+Mathura
+
+        18 Radha18                                                    28
+Barsana
+
+
+        ID NAME                                                      AGE
+---------- -------------------------------------------------- ----------
+CITY
+--------------------------------------------------
+        19 Radha19                                                    29
+Dwarka
+
+        20 Radha20                                                    21
+Gokul
+
+        21 Radha21                                                    22
+Vrindavan
+
+
+        ID NAME                                                      AGE
+---------- -------------------------------------------------- ----------
+CITY
+--------------------------------------------------
+        22 Radha22                                                    24
+Mathura
+
+        23 Radha23                                                    25
+Barsana
+
+        24 Radha24                                                    27
+Dwarka
+
+
+        ID NAME                                                      AGE
+---------- -------------------------------------------------- ----------
+CITY
+--------------------------------------------------
+        25 Radha25                                                    23
+Gokul
+
+        26 Radha26                                                    26
+Vrindavan
+
+        27 Radha27                                                    28
+Mathura
+
+
+        ID NAME                                                      AGE
+---------- -------------------------------------------------- ----------
+CITY
+--------------------------------------------------
+        28 Radha28                                                    29
+Barsana
+
+        29 Radha29                                                    20
+Dwarka
+
+        30 Radha30                                                    21
+Gokul
+
+
+30 rows selected.
+
+SQL> select * from radhaa;
+
+       DID DNAME      DESIGNATIO
+---------- ---------- ----------
+        11 engineer   manager
+        12 research   professor
+        13 salesman   sales
+        14 operator   operator
+        15 reception  recep.nist
+
+SQL> commit;
+
+Commit complete.
+
+SQL> delete from radhaa where did=11;
+
+1 row deleted.
+
+SQL> select * from radha;
+
+        ID NAME                                                      AGE
+---------- -------------------------------------------------- ----------
+CITY
+--------------------------------------------------
+         1 Radha1                                                     20
+Vrindavan
+
+         2 Radha2                                                     22
+Mathura
+
+         3 Radha3                                                     24
+Barsana
+
+
+        ID NAME                                                      AGE
+---------- -------------------------------------------------- ----------
+CITY
+--------------------------------------------------
+         4 Radha4                                                     25
+Dwarka
+
+         5 Radha5                                                     27
+Gokul
+
+         6 Radha6                                                     23
+Vrindavan
+
+
+        ID NAME                                                      AGE
+---------- -------------------------------------------------- ----------
+CITY
+--------------------------------------------------
+         7 Radha7                                                     26
+Mathura
+
+         8 Radha8                                                     28
+Barsana
+
+         9 Radha9                                                     29
+Dwarka
+
+
+        ID NAME                                                      AGE
+---------- -------------------------------------------------- ----------
+CITY
+--------------------------------------------------
+        10 Radha10                                                    21
+Gokul
+
+        11 Radha11                                                    20
+Vrindavan
+
+        12 Radha12                                                    22
+Mathura
+
+
+        ID NAME                                                      AGE
+---------- -------------------------------------------------- ----------
+CITY
+--------------------------------------------------
+        13 Radha13                                                    24
+Barsana
+
+        14 Radha14                                                    25
+Dwarka
+
+        15 Radha15                                                    27
+Gokul
+
+
+        ID NAME                                                      AGE
+---------- -------------------------------------------------- ----------
+CITY
+--------------------------------------------------
+        16 Radha16                                                    23
+Vrindavan
+
+        17 Radha17                                                    26
+Mathura
+
+        18 Radha18                                                    28
+Barsana
+
+
+        ID NAME                                                      AGE
+---------- -------------------------------------------------- ----------
+CITY
+--------------------------------------------------
+        19 Radha19                                                    29
+Dwarka
+
+        20 Radha20                                                    21
+Gokul
+
+        21 Radha21                                                    22
+Vrindavan
+
+
+        ID NAME                                                      AGE
+---------- -------------------------------------------------- ----------
+CITY
+--------------------------------------------------
+        22 Radha22                                                    24
+Mathura
+
+        23 Radha23                                                    25
+Barsana
+
+        24 Radha24                                                    27
+Dwarka
+
+
+        ID NAME                                                      AGE
+---------- -------------------------------------------------- ----------
+CITY
+--------------------------------------------------
+        25 Radha25                                                    23
+Gokul
+
+        26 Radha26                                                    26
+Vrindavan
+
+        27 Radha27                                                    28
+Mathura
+
+
+        ID NAME                                                      AGE
+---------- -------------------------------------------------- ----------
+CITY
+--------------------------------------------------
+        28 Radha28                                                    29
+Barsana
+
+        29 Radha29                                                    20
+Dwarka
+
+        30 Radha30                                                    21
+Gokul
+
+
+30 rows selected.
+
+SQL> select * from radhaa;
+
+       DID DNAME      DESIGNATIO
+---------- ---------- ----------
+        12 research   professor
+        13 salesman   sales
+        14 operator   operator
+        15 reception  recep.nist
+
+SQL> delete from radhaa where did = 12 and did = 13;
+
+0 rows deleted.
+
+SQL> delete from radhaa where did = 12 and dname = 'research';
+
+1 row deleted.
+
+SQL> select * from radhaa;
+
+       DID DNAME      DESIGNATIO
+---------- ---------- ----------
+        13 salesman   sales
+        14 operator   operator
+        15 reception  recep.nist
+
+SQL> select * from radhaa where did=13 and dname='operator';
+
+no rows selected
+
+SQL> select * from radhaa where did=13 and dname='salesman';
+
+       DID DNAME      DESIGNATIO
+---------- ---------- ----------
+        13 salesman   sales
+
+SQL> select * from radhaa where <> did=11;
+select * from radhaa where <> did=11
+                           *
+ERROR at line 1:
+ORA-00936: missing expression
+
+
+SQL> select * from radhaa <> did=11;
+select * from radhaa <> did=11
+                     *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended
+
+
+SQL> select * from radhaa where <> did=11;
+select * from radhaa where <> did=11
+                           *
+ERROR at line 1:
+ORA-00936: missing expression
+
+
+SQL> select * from radhaa where <> did=11;
+select * from radhaa where <> did=11
+                           *
+ERROR at line 1:
+ORA-00936: missing expression
+
+
+SQL> select * from radhaa where < > did=11;
+select * from radhaa where < > did=11
+                           *
+ERROR at line 1:
+ORA-00936: missing expression
+
+
+SQL> select * from radhaa where not < > did=11;
+select * from radhaa where not < > did=11
+                               *
+ERROR at line 1:
+ORA-00936: missing expression
+
+
+SQL> select * from radhaa where not did=11;
+
+       DID DNAME      DESIGNATIO
+---------- ---------- ----------
+        13 salesman   sales
+        14 operator   operator
+        15 reception  recep.nist
+
+SQL> select * from radhaa where<>did 13;
+select * from radhaa where<>did 13
+                          *
+ERROR at line 1:
+ORA-00936: missing expression
+
+
+SQL> select * from radhaa where <> did 13;
+select * from radhaa where <> did 13
+                           *
+ERROR at line 1:
+ORA-00936: missing expression
+
+
+SQL> select * from radhaa where did  <> 13;
+
+       DID DNAME      DESIGNATIO
+---------- ---------- ----------
+        14 operator   operator
+        15 reception  recep.nist
+
+SQL> select * from radhaa ;
+
+       DID DNAME      DESIGNATIO
+---------- ---------- ----------
+        13 salesman   sales
+        14 operator   operator
+        15 reception  recep.nist
+
+SQL> select * from radhaa between 13 and 15;
+select * from radhaa between 13 and 15
+                     *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended
+
+
+SQL> select * from radhaa where did between 13 and 15;
+
+       DID DNAME      DESIGNATIO
+---------- ---------- ----------
+        13 salesman   sales
+        14 operator   operator
+        15 reception  recep.nist
+
+SQL> select * from radhaa where idi between 13 and 15;
+select * from radhaa where idi between 13 and 15
+                           *
+ERROR at line 1:
+ORA-00904: "IDI": invalid identifier
+
+
+SQL> select * from radhaa where did between 13 and 15;
+
+       DID DNAME      DESIGNATIO
+---------- ---------- ----------
+        13 salesman   sales
+        14 operator   operator
+        15 reception  recep.nist
+
+SQL> select * from radhaa where did in(101,102,103);
+
+no rows selected
+
+SQL> select * from radhaa where did in(13,14,15,16);
+
+       DID DNAME      DESIGNATIO
+---------- ---------- ----------
+        13 salesman   sales
+        14 operator   operator
+        15 reception  recep.nist
