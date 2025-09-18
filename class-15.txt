@@ -1,0 +1,113 @@
+What is Normalization and Denormalization?
+-------------------------------------------
+
+-Normalization and denormalization are two database design techniques used to manage data in relational databases. They help optimize data storage and query performance, depending on the needs of the application.
+
+Normalization
+-------------
+Normalization is the process of organizing data in a database to reduce data redundancy and improve data integrity.
+
+-Break down large tables into smaller, related tables and define relationships between them using foreign keys.
+
+Benefits of Normalization:
+--------------------------
+
+-Reduces data duplication.
+
+-Saves storage space.
+
+-Ensures data consistency.
+
+-Makes updates, deletions, and insertions more efficient
+
+Common Normal Forms:
+--------------------
+
+-1NF (First Normal Form):
+-------------------------
+Eliminate repeating groups, ensure atomicity of data.
+
+2NF (Second Normal Form):
+--------------------------
+Be in 1NF and remove partial dependencies.
+
+3NF (Third Normal Form):
+-------------------------
+Be in 2NF and remove transitive dependencies.
+
+BCNF (Boyce-Codd Normal Form):
+------------------------------
+A stricter version of 3NF.
+
+Example of Normalization:
+-------------------------
+Unnormalized Table (UNF):
+-------------------------
+
+StudentID	StudentName	Course1	    Course2
+-----------------------------------------------------
+101	            shrikanth  	 Math	    Physics
+
+Normalized Tables:
+-------------------
+
+Student Table
+--------------
+
+StudentID	StudentName
+101	         shrikanth
+
+Course Table
+-------------
+
+StudentID	Course
+101	          Math
+101	         Physics
+
+Denormalization
+---------------
+-Denormalization is the process of combining normalized tables into larger tables to improve read performance.
+
+-Speed up data retrieval by reducing the number of table joins.
+
+Benefits of Denormalization:
+-----------------------------
+
+-Faster read operations (especially for complex queries).
+
+-Simpler queries.
+
+-Better performance in reporting and analytics.
+
+Example of Denormalization:
+--------------------------
+
+-If you frequently query student names along with their courses, you might denormalize the two normalized tables into one.
+
+Denormalized Table
+------------------
+
+StudentID	StudentName	Course
+--------------------------------------
+101	          Rani	         Math
+---------------------------------------
+101	          Rani         Physics
+---------------------------------------
+
+**difference between Normalization and Denormalization**
+---------------------------------------------------------
+
+
+Feature	           Normalization	             Denormalization
+Purpose	           -Remove redundancy	     -Improve read performance
+Storage	           -Efficient	             -Can be more redundant
+Data Integrity     -High	             -Lower due to duplication
+Read Performance   -Slower 	             -Faster 
+Write Performance  -Faster	              -Slower
+
+
+
+
+
+
+

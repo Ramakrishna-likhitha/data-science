@@ -1,0 +1,132 @@
+PL/SQL
+=======
+PL/SQL stands for Procedural and Structured Query Language.
+
+It is a extension of SQL and having following features.
+
+1) We can achieve programming features like control statements, LOOPS and etc.
+
+2) It will reduce network traffic.
+
+3) We can display our error messages by using the concept of exception handling.
+
+4) We can perform related operations by using the concept of triggers.
+
+5) It will compile and store PL/SQL program permanent to database for repeated execution.
+
+
+PL/SQL block
+============
+A PL/SQL program is also known as PL/SQL block.
+
+syntax:
+-------
+	DECLARE 
+	-
+	-	-- Declaration section
+	-
+	BEGIN
+	-
+	-	-- Executable section
+	-
+	EXCEPTION
+	-
+	-	-- Exception section 
+	-
+	END;
+	/
+
+Declaration section
+--------------------
+A declaration section is used to declare variables, exceptions , cursors and etc.
+It is optional section.
+
+Executable section
+-----------------
+A executable section contains lines of code which are used to complete a table.
+It is a mandatory section. 
+
+Exception section 
+-----------------
+A exception section contains lines of code which are executed when exception is raised.
+It is a optional section.
+
+To see the output in PL/SQL we need to use below command.
+ex:
+	SQL> set    serveroutput  on
+
+Q)Write a PL/SQL program to display Hello World?
+
+BEGIN
+DBMS_OUTPUT.PUT_LINE('Hello World');
+END;
+/
+
+Here DBMS_OUTPUT is a package name.
+Here PUT_LINE is a procedure name.
+Here '/' is used to submit the PL/SQL block into database.
+
+
+Q) Write a PL/SQL program to perform sum of two numbers?
+
+DECLARE 
+A number;   
+B number;
+C number;
+BEGIN
+A := 10;
+B := 20;
+C := A+B;
+DBMS_OUTPUT.PUT_LINE(C);
+END;
+/
+
+Declaration and Initialization using single line.
+
+ex:
+
+DECLARE 
+A number:=10;
+B number:=20;
+C number:=A+B;
+BEGIN
+DBMS_OUTPUT.PUT_LINE(C);
+END;
+/
+
+Using '&' symbol we can provide dynamic values.
+
+ex:
+
+DECLARE
+A number;
+B number;
+C number;
+BEGIN
+A := &a;
+B := &b;
+C := A+B;
+DBMS_OUTPUT.PUT_LINE('sum of two numbers is ='||C);
+END;
+/
+
+In PL/SQL , DML operations are allowed.
+insert the data
+---------------
+
+ex:
+
+DECLARE 
+L_Sno number(3);
+L_Sname varchar2(10);
+L_Sadd varchar2(12);
+BEGIN
+L_Sno := &sno;
+L_Sname := '&sname';
+L_Sadd := '&sadd';
+insert into student values(L_Sno,L_Sname,L_Sadd);
+DBMS_OUTPUT.PUT_LINE('Record Inserted');
+END;
+/
+
+

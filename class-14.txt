@@ -1,0 +1,248 @@
+Sub Queries
+============
+If we declare a query inside another query such concept is called sub query.
+
+Sub queries are used to select the records based on unknown values.
+
+We have following list of sub queries.
+
+1) Single row sub query
+
+2) Multiple row sub query 
+
+3) Multiple column sub query 
+
+4)Co-RELATED SUBQUERY
+
+5)SCALAR subquery 
+
+
+
+1) Single row sub query
+------------------------
+When subquery returns only one row is called single row sub query.
+
+ex:
+	SQL
+	----
+		select * from emp where eid=201;	
+
+	Subquery
+	---------
+		select * from emp where eid=(select eid from emp where ename='Alan');
+
+	Here sub query will execute first then parent query.
+
+ex:2
+---
+	SQL
+	---
+		select * from emp where eid=201 and ename='Alan';
+		
+	subquery
+	---------
+		select * from emp where 
+		eid=(select eid from emp where esal=9000) 
+		and 
+		ename=(select ename from emp where eid=201);
+
+
+Q) Write a query to display second highest salary from emp table?
+
+	select max(esal) from emp where esal<(select max(esal) from emp);
+
+
+Q) Write a query to display employees information whose salary is greater then Branda salary?
+
+	select * from emp where esal>(select esal from emp where ename='Branda');	
+
+
+Q) Write a query to delete duplicate records from a database table ?
+
+
+	delete from emp where rowid NOT IN(select max(rowid) from emp group by eid);
+
+2) Multiple row sub query
+=========================
+If a sub query returns more then one row is called multiple row sub query.
+
+To perform multiple row sub query we need to use multiple row operators.
+
+We have three types of multiple row operators.
+
+1) ANY
+
+2) ALL
+
+3) IN 
+
+1) ANY
+------
+	select * from emp where esal> ANY(select esal from emp where deptno=10);
+
+	select * from emp where esal< ANY(select esal from emp where deptno=10);
+
+
+2) ALL
+------
+	select * from emp where esal> ALL(select esal from emp where deptno=10);
+
+
+3) IN
+-----
+	select * from emp where esal IN (select esal from emp where deptno=10);	
+
+
+	select * from emp where NOT esal IN (select esal from emp where deptno=10);		
+
+
+3) Multiple column subquery
+============================
+If a sub query returns more then one column is called multiple column sub query.
+
+In multiple column sub query we need to use IN operator.
+
+ex:
+	select * from emp where(eid,ename,esal) IN (select eid,ename,esal from emp where eid=201);
+
+
+	select eid,ename,esal from emp where(eid,ename,esal) 
+	IN (select eid,ename,esal from emp where eid=201);
+
+	select eid,ename,esal from emp where(eid,ename,esal) 
+	IN (select eid,ename,esal from emp);
+
+4)Co-RELATED SUBQUERY:
+--------------------
+When subquery is executed in relation to parent query, it is called co-related subquery.
+
+Q.1 write a query to display all the rows who are having salary grater than AVG salary his department?
+
+-Select AVG(sal) from emp;
+
+-Select * from emp where sal > (select AVG(sal) from emp group by deptno); //invalid
+Select * from emp where esal > (select AVG(esal) from emp where deptno = 10);
+
+-Select * from emp e 
+                  where esal > (select AVG(esal) from emp where deptno = e.deptno);
+-Select esal,deptno from emp e 
+                  where esal > (select AVG(esal) from emp where deptno = e.deptno);
+
+o/p:	sal	deptno
+	1600	30
+	2975	20
+	2850	30
+	3000	20
+	5000	10
+	3000	20
+
+The above example is a co-related subquery.
+
+-In co-related subquery, parent query is executed first and then subquery is executed in relation to result of parent query.
+
+5)SCALAR subquery 
+-----------------
+-when we use subquery in the select clause. It is called as Scalar subquery.
+
+
+Select deptno, dname, dloc, (Select sum(esal) from emp where deptno = d.deptno)
+		Sum_esal from dept d;
+
+Scalar subquery are also called sub select.
+
+
+			 ***Interview questions***
+------------------------------------------------------------------------------
+1.What is SQL?
+
+ Ans: SQL transfer Structured Query Language are also called as SEQUEL.
+
+2.List out sub language of SQL?
+
+Ans: They are 5 sub languages DDL,DML,DRL/DQL,TCL,DCL .
+
+3.What is different between char and varchar2?
+
+Ans: Char is a fixed size and varchar2 is a not a fixed size.
+
+4.What is projection?
+
+Ans: Selecting specific columns is projection.
+
+5.How can we filter the rows in the table by use the Where, Group BY, Having, Order By clause?
+
+ Ans: Select deptno, sum(sal) from emp where ename <> ‘KING’ Group By deptno Having sum(sal) > 9000 Order By sum(sal) DESC;
+
+6.What is column Alias?
+ 
+ Ans: Providing the duplicate to column Name. This is not a permanent.
+
+7.Can we perform a arithmetic operation by using dual?
+
+Ans: Select 10 + 20 Result from dual;
+
+8.What is dual table?
+
+Ans: Dual table is dummy table to calculate the  some problems.
+
+9.Write a query to display current date along with HH:MI:SS?
+
+Ans: Select To_Char(sysdate,’DD-MON-YYYY HH:MI:SS’) from dual?
+
+10.Write a query to see the current date?
+Ans:
+Select sysdate from dual;
+
+11.Which operator is used to accept the values from the user?
+
+Ana: INSERT, UPDATE,CREATE and etc.
+
+12.How can you see all the table which are in the data base?
+Ans: Select * from TAB;
+
+13.Which command is used to remove the table from the data base?
+
+Ans: Drop command is used to remove  the table.
+
+14.What is different between delete and truncate command?
+
+Ans: Delete to the table and getting the roll back. Truncate is used to delete the table  it is not possible to roll back the table.
+ 
+15.Which operator is used to retrieve the rows based on null values?
+Ans: IS NULL
+
+16.In how many ways we can remove all the rows from the table?
+Ans: They are two ways Delete and Truncate
+
+17.How can we create copy of a table?
+Ans: Create table emp1 AS select * from emp;
+Create table emp2 AS select * from emp where deptno = 30;
+
+18.Write a query to display no.of rows in the table?
+Ans: BY using count(*)
+Select count(*) from emp;
+
+19.What is different between count(*) and count(Expr)?
+Ans: * is total table. Expr is only one column to count the table.
+
+20.What is difference between group functions and scalar function?
+Ans: Group functions will act on total table and scalar functions will act on one row.
+
+21.What is the use of Group By clause?
+Ans: Group By clause will devided into several groups.
+
+22.How can we filter the rows of Group By clause?
+Ans: Having clause is used to filter the data.
+
+23.Which clause is used to arrange the rows in the table?
+  Ans: Order By clause is used to arrange.
+
+24.Which clause should be the last clause of the query?
+ Ans: Is order By caluse.
+25.What is a TOAD?
+Tool for Oracle Application Development.
+
+	
+
+
+

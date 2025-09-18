@@ -1,0 +1,205 @@
+Merge command
+============
+Merge command is a combination of insert and update command.
+
+student10 table
+---------------
+drop table student10;
+create table student10(sno number(3),sname varchar2(10),sadd varchar2(12));
+insert into student10 values(101,'raja','hyd');
+insert into student10 values(102,'ravi','delhi');
+insert into student10 values(103,'ramana','vizag');
+commit;
+
+student20 table
+---------------
+drop table student20;
+create table student20(sno number(3),sname varchar2(10),sadd varchar2(12));
+insert into student20 values(103,'Alan','Texas');
+insert into student20 values(104,'James','Florida');
+commit;
+
+ex:
+
+merge into student10 s1
+using student20 s2
+ON(s1.sno=s2.sno)
+when matched
+then update set sname=s2.sname,sadd=s2.sadd
+when not matched
+then insert(sno,sname,sadd) values(s2.sno,s2.sname,s2.sadd);
+
+
+
+View
+======
+View is a logical or virtual representation of a data from one or more then one table.
+
+A table which is used to create a view is called base table or above table.
+
+A view does not consumes the memory.
+
+A view does not have any data.
+
+A view will get the data when we execute select command.
+
+syntax:
+------
+	create view <view_name> as select stmt;
+
+ex:
+	create view v1 as select * from emp;
+
+	create view v1 as select eid,ename,esal from emp;
+
+	create view v1 as select * from emp where eid IN(201,202,203);
+
+	create view v1 as select * from emp where ename like 'A%';
+
+	create view v1 as select * from emp where deptno<>10;
+
+	create view v1 as select * from emp where eid between 201 and 206;
+
+
+We have following types of views.
+
+1) Simple view 
+
+2) Complex view 
+
+3) With read only view 
+
+4) With check option view 
+
+5) Materialized view 
+
+
+1) Simple view 
+--------------
+If a view is created by using one base table is called simple view.
+
+In simple view DML operations are allowed.
+
+ex:
+	create view v1 as select * from emp;
+
+	select * from v1;
+
+	select * from emp;
+
+	delete from v1 where eid=207;
+
+	select * from v1;
+
+	select * from emp;
+
+
+2) Complex view 
+----------------
+If a view is created by using more then one base table is called complex view.
+
+In complex view DML operations are not allowed.
+
+ex:
+	create view v8 as select e.eid,e.ename,e.esal,d.dname,d.dloc from emp e,dept d
+				where(e.deptno=d.deptno);
+
+	select * from v2;
+
+	delete from v2;
+
+
+
+3) With read only view 
+---------------------
+If a view is created by using one base table and DML operations are not required then we need 
+to use with read only view.
+
+ex:
+	create view v3 as select * from emp with read only;
+
+	select * from v3;
+
+	delete from v3;
+
+4) With check option view
+-------------------------
+If a view is created by using one base table and DML operations are required only if our condition is true then we need to use with check option view.
+ex:
+	create view v4 as select * from emp where deptno=30 with check option;
+
+	insert into v10 values(207,'Lara',60000,50,'Salesman',500);//invalid 
+
+	insert into v10 values(207,'Lara',60000,30,'Salesman',500);
+
+	select * from v4;
+
+	select * from emp;
+
+5) Materialized view 
+----------------------
+Materialized view is also known as snapshot.
+
+To create materialized view a table must have primary key.
+
+ex:
+	alter table emp ADD primary key(eid);
+
+
+	create materialized view v11 as select * from emp;
+
+	select * from v11;
+
+	delete from v11 where eid=207; // data manipulation not possible 
+
+	delete from emp where eid=207; //record deleted
+
+	select * from v5; // record available here 
+
+	exec DBMS_SNAPSHOT.REFRESH('v5');
+
+	Here DBMS_SNAPSHOT is a package name.
+	Here REFRESH is a procedure name.
+
+
+Q) Write a query to see the list of views present in database?
+
+	select view_name from user_views;
+
+	
+Q) Write a query to drop the view?
+
+	drop view v1;
+	drop view v2;
+	drop view v3;
+	drop view v4;
+	drop materialized view v5;
+
+Different between simple and complex views?
+-------------------------------------------
+	Simple view				Complex view
+1.Created by using only one table.	1. Created by using multiple tables.
+2.DML operations are allowed.	        2. DML operations are not allowed.
+3.Should not be created using 		3. Can be created using arithmetic 
+arithmetic operations or functions	   operations or functions or group by
+or group by clauses.			      clauses.
+
+
+What are different between rownum and rowid?
+-----------------------------------------------
+                 Rownum				 Rowid
+1)Rownum values starts with 1 		1)Rowid’s are hexadecimal values.
+and increment by one.
+2)Rownum values are temporary.		2)Rowid values are permanent.
+3)Rownum values are generated 		3)The Rowid values are generated when 
+when query is executed.			row is created or inserted.
+
+
+Account lock
+------------
+alter user system account lock;
+alter user system account unlock.
+conn sys/admin as sysdba;
+/sys as sysdba
+sys
+
