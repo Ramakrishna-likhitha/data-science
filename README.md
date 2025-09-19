@@ -1,3 +1,6 @@
+
+san
+-----------------------
 If VS Code shows garbage in terminal
  Cause:
         Encoding issues
@@ -9,3 +12,4 @@ If VS Code shows garbage in terminal
           Check font settings under Editor: Font Family
           Clear terminal: Ctrl + L
           Restart VS Code if needed 
+
